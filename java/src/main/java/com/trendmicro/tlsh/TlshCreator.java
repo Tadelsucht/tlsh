@@ -479,8 +479,12 @@ public class TlshCreator {
 	 * @return if enough data has been processed to produce a TLSH structure
 	 */
 	public boolean isValid(boolean force) {
+		if (force) {
+			return true;
+		}
+		
 		// incoming data must be more than or equal to MIN_DATA_LENGTH bytes
-		if (!force && data_len < MIN_DATA_LENGTH) {
+		if (data_len < MIN_FORCE_DATA_LENGTH || (!force && data_len < MIN_DATA_LENGTH)) {
 			return false;
 		}
 
